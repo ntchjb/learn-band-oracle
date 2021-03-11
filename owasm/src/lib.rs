@@ -27,25 +27,11 @@ fn prepare_impl(_input: Input) {
 
 #[no_mangle]
 fn execute_impl(input: Input) -> Output {
-    let avg_free_for_ex_api: Option<f64> = ext::load_average(FREEFOREXAPI_DATA_SOURCE as i64);
-    let avg_gold_price: Option<f64> = ext::load_average(GOLDPRICEORG_DATA_SOURCE as i64);
+    let mut results = Vec::<f64>::new();
+    results.append(&mut ext::load_input(FREEFOREXAPI_DATA_SOURCE as i64).collect());
+    results.append(&mut ext::load_input(GOLDPRICEORG_DATA_SOURCE as i64).collect());
 
-    let mut avgs = Vec::new();
-
-    match avg_free_for_ex_api {
-        Some(avg) => {
-            avgs.push(avg);
-        }
-        None => {}
-    }
-    match avg_gold_price {
-        Some(avg) => {
-            avgs.push(avg);
-        }
-        None => {}
-    }
-
-    match ext::stats::average(avgs) {
+    match ext::stats::average(results) {
         Some(result) => {
             Output { price: (result * input.multiplier as f64) as u64 }
         }
