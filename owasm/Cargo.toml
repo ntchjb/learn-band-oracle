@@ -11,4 +11,4 @@ crate-type = ["cdylib"]
 
 [dependencies]
 owasm = { version = "0.1.10" }
-obi = { version = "0.0.1" }
+obi = { version = "0.0.2" }
