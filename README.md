@@ -11,8 +11,8 @@ This tutorial presents methods and steps to create, build and test bandchain's o
 
 Data source need to be able to run as executable e.g. `./gold-price USD`. In this example, we can run the data source by following commands.
 
-- `./datasource-freeforexapi.com`
-- `./datasource-goldprice.org`
+- `./datasource-freeforexapi.com.py`
+- `./datasource-goldprice.org.py`
 
 Note that validators need to have runtime for the data source's executable. (e.g. `python3`). It will then return a single number to the console representing current gold price in USD dollars.
 
