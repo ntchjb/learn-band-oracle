@@ -30,24 +30,29 @@ fn execute_impl(input: Input) -> Output {
     let avg_free_for_ex_api: Option<f64> = ext::load_average(FREEFOREXAPI_DATA_SOURCE as i64);
     let avg_gold_price: Option<f64> = ext::load_average(GOLDPRICEORG_DATA_SOURCE as i64);
 
-    let mut found_count: i64 = 0;
-    let mut sum_avg: f64 = 0.0;
+    let mut avgs = Vec::new();
 
     match avg_free_for_ex_api {
         Some(avg) => {
-            found_count+=1;
-            sum_avg+=avg;
+            avgs.push(avg);
         }
         None => {}
     }
     match avg_gold_price {
         Some(avg) => {
-            found_count+=1;
-            sum_avg+=avg;
+            avgs.push(avg);
         }
         None => {}
     }
-    Output { price: (sum_avg / found_count as f64 * input.multiplier as f64) as u64 }
+
+    match ext::stats::average(avgs) {
+        Some(result) => {
+            Output { price: (result * input.multiplier as f64) as u64 }
+        }
+        None => {
+            panic!("No data provided by data sources")
+        }
+    }
 }
 
 prepare_entry_point!(prepare_impl);
