@@ -16,8 +16,8 @@ const FREEFOREXAPI_DATA_SOURCE: u64 = 0;
 const GOLDPRICEORG_DATA_SOURCE: u64 = 1;
 
 // Data Sources
-const FREEFOREXAPI_DATA_SOURCE_DS: i64 = 50;
-const GOLDPRICEORG_DATA_SOURCE_DS: i64 = 51;
+const FREEFOREXAPI_DATA_SOURCE_DS: i64 = 4;
+const GOLDPRICEORG_DATA_SOURCE_DS: i64 = 5;
 
 #[no_mangle]
 fn prepare_impl(_input: Input) {
