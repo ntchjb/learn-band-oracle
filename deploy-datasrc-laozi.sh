@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 OWNER=$OWNER
 FROM=$FROM
