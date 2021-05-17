@@ -25,7 +25,6 @@ def set_request_verification_headers(existingHeaders: typing.Dict[str, str]) -> 
 def main(symbols):
     payload = {"source": "cmc", "symbols": symbols}
     headers = set_request_verification_headers(HEADERS)
-    print(headers)
     r = requests.post(URL, headers=headers, json=payload)
     r.raise_for_status()
     pxs = r.json()
