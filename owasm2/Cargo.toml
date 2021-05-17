@@ -1,0 +1,14 @@
+[package]
+name = "cmk-owasm"
+version = "0.1.0"
+authors = ["Nathachai Jaiboon <ntchjb@users.noreply.github.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+owasm = { version = "0.1.10" }
+obi = { version = "0.0.2" }
