@@ -4,7 +4,7 @@ import sys
 import os
 import typing
 
-URL = "https://asia-southeast2-price-caching.cloudfunctions.net/query-price"
+URL = "https://asia-southeast2-band-playground.cloudfunctions.net/price-caching-request-verification"
 HEADERS = {"Content-Type": "application/json"}
 
 def set_header_from_env(headers: typing.Dict[str, str], key: str):
