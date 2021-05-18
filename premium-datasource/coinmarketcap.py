@@ -31,8 +31,11 @@ def main(symbols):
 
     if len(pxs) != len(symbols):
         raise Exception("PXS_AND_SYMBOL_LEN_NOT_MATCH")
+    rates = []
+    for symbol in symbols:
+        rates.append(str(pxs[symbol]))
 
-    return ",".join(pxs)
+    return ",".join(rates)
 
 
 if __name__ == "__main__":
