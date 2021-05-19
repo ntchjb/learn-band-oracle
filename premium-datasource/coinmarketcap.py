@@ -4,7 +4,6 @@ import sys
 import os
 import typing
 
-URL = "https://asia-southeast2-band-playground.cloudfunctions.net/price-caching-request-verification"
 HEADERS = {"Content-Type": "application/json"}
 
 def set_header_from_env(headers: typing.Dict[str, str], key: str):
@@ -22,10 +21,11 @@ def set_request_verification_headers(existingHeaders: typing.Dict[str, str]) -> 
     set_header_from_env(newHeaders, "BAND_SIGNATURE")
     return newHeaders
 
-def main(symbols):
+def main(endpoint, raw_symbols):
+    symbols = raw_symbols.split(",")
     payload = {"source": "cmc", "symbols": symbols}
     headers = set_request_verification_headers(HEADERS)
-    r = requests.post(URL, headers=headers, json=payload)
+    r = requests.post(endpoint, headers=headers, json=payload)
     r.raise_for_status()
     pxs = r.json()
 

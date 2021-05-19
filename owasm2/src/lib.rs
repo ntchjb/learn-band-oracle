@@ -3,6 +3,7 @@ use owasm::{execute_entry_point, ext, oei, prepare_entry_point};
 
 #[derive(OBIDecode, OBISchema)]
 struct Input {
+    endpoint: String,
     symbols: Vec<String>,
     multiplier: u64,
 }
@@ -20,7 +21,7 @@ const COINMARKETCAP_DATA_SOURCE_DS: i64 = 1;
 
 #[no_mangle]
 fn prepare_impl(input: Input) {
-    oei::ask_external_data(COINMARKETCAP_DATA_SOURCE as i64, COINMARKETCAP_DATA_SOURCE_DS, &input.symbols.join(" ").as_bytes());
+    oei::ask_external_data(COINMARKETCAP_DATA_SOURCE as i64, COINMARKETCAP_DATA_SOURCE_DS, &[input.endpoint, input.symbols.join(",")].join(" ").as_bytes());
 }
 
 #[no_mangle]
