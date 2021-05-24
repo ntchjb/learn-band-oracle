@@ -1,0 +1,19 @@
+#!/bin/bash
+
+OWNER=$OWNER
+FROM=$FROM
+NODE_IP=${NODE_IP:-localhost}
+KEYRING=${KEYRING:-os}
+CHAIN_ID=$CHAIN_ID
+ORACLE_SCRIPT_ID=$ORACLE_SCRIPT_ID
+MIN_COUNT=$MIN_COUNT
+ASK_COUNT=$ASK_COUNT
+
+bandd tx oracle request $ORACLE_SCRIPT_ID $ASK_COUNT $MIN_COUNT \
+  -c "00000002000000034554480000000442414e440000000000000064" \
+  -m from_bandd \
+  --keyring-backend $KEYRING \
+  --from $FROM \
+  --chain-id $CHAIN_ID \
+  --fee-limit 32uband \
+  --gas 1000000
