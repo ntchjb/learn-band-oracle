@@ -9,7 +9,7 @@ struct Input {
 
 #[derive(OBIEncode, OBISchema)]
 struct Output {
-    prices: Vec<u64>,
+    rates: Vec<u64>,
 }
 
 // Sources
@@ -28,7 +28,7 @@ fn execute_impl(input: Input) -> Output {
     let mut raw_results = Vec::<String>::new();
     raw_results.append(&mut ext::load_input(COINMARKETCAP_DATA_SOURCE as i64).collect());
     let mut output = Output {
-        prices: Vec::<u64>::new()
+        rates: Vec::<u64>::new()
     };
 
     let num_data_sources = raw_results.len();
@@ -48,7 +48,7 @@ fn execute_impl(input: Input) -> Output {
         .map(|x| (x * input.multiplier as f64) as u64)
         .collect();
 
-    output.prices = final_prices;
+    output.rates = final_prices;
 
     return output
 }

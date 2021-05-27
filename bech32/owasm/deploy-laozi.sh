@@ -19,5 +19,5 @@ bandd tx oracle create-oracle-script \
   --keyring-backend $KEYRING \
   --node "tcp://${NODE_IP}:26657" \
   --chain-id $CHAIN_ID \
-  --schema "{symbol:[string],multiplier:u64}/{price:[u64]}" \
+  --schema "{symbols:[string],multiplier:u64}/{rates:[u64]}" \
   --gas 1000000
