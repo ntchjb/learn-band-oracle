@@ -1,6 +1,5 @@
 #!/bin/bash
 
-OWNER=$OWNER
 FROM=$FROM
 NODE_IP=${NODE_IP:-localhost}
 KEYRING=${KEYRING:-os}
@@ -16,4 +15,4 @@ bandd tx oracle request $ORACLE_SCRIPT_ID $ASK_COUNT $MIN_COUNT \
   --chain-id $CHAIN_ID \
   --gas 3000000 \
   --node tcp://$NODE_IP:26657 \
-  --keyring-backend test 
+  --keyring-backend $KEYRING
