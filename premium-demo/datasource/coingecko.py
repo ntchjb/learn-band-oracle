@@ -261,15 +261,19 @@ def main(endpoint, raw_symbols):
   r.raise_for_status()
 
   # Receive a response constructed by your own implementation of the Gateway
-  # For this case, the response is an arrray of coin prices
+  # For this case, the response is an object with id as key and price as value
   # ordered respectively to given symbols
-  pxs = r.json()
-  if len(pxs) != len(symbols):
+  result = r.json()
+  priceList = []
+  for id in ids:
+    priceList.append(str(result[id]["usd"]))
+
+  if len(priceList) != len(symbols):
     raise Exception("PXS_AND_SYMBOL_LEN_NOT_MATCH")
 
   # Construct the result to be handled by Oracle Script
   # For this case, the result should be comma-separated
-  return ",".join(pxs)
+  return ",".join(priceList)
 
 if __name__ == "__main__":
   try:

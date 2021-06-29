@@ -16,4 +16,7 @@ bandd tx oracle request $ORACLE_SCRIPT_ID $ASK_COUNT $MIN_COUNT \
   --from $FROM \
   --chain-id $CHAIN_ID \
   --fee-limit 32uband \
-  --gas 1000000
+  --gas 2000000 \
+  --prepare-gas 400000 \
+  --execute-gas 600000 \
+  --node "tcp://${NODE_IP}:26657"
