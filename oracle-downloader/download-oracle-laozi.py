@@ -61,11 +61,12 @@ def main():
     WRITE_TO_FILE(filesPath + "/" + oracleScript["oracle_script"]["filename"], file)
     oracleScripts.append(oracleScript["oracle_script"])
 
-  with open(genesisFilePathOriginal, encoding='utf-8') as fh:
-    genesisState = json.load(fh)
-  genesisState["app_state"]["oracle"]["data_sources"] = dataSources
-  genesisState["app_state"]["oracle"]["oracle_scripts"] = oracleScripts
-  WRITE_JSON_TO_FILE(genesisFilePath, genesisState)
+  if genesisFilePathOriginal:
+    with open(genesisFilePathOriginal, encoding='utf-8') as fh:
+      genesisState = json.load(fh)
+    genesisState["app_state"]["oracle"]["data_sources"] = dataSources
+    genesisState["app_state"]["oracle"]["oracle_scripts"] = oracleScripts
+    WRITE_JSON_TO_FILE(genesisFilePath, genesisState)
   
 if __name__ == "__main__":
   main()
